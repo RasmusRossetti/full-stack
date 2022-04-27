@@ -1,5 +1,12 @@
 # full-stack
 
+## Technologies used
+backend
+-Node.js, express, uuid, cors, nodemon
+
+frontend
+- create-react-app, tailwind, axios, react-toastify
+
 ## Description
 
 This project is a fullstack application with built backend server to handle requests such as the CRUD operation.
