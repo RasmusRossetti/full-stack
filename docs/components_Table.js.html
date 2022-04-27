@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Table.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Table.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from "axios";
+import React, { useContext, useState } from "react";
+import { RefreshContext } from "../contexts/RefreshContext.js";
+import useFetch from "../hooks/useFetch";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Modal from "./Modal.js";
+toast.configure();
+/**
+ * Table is a functional component for the output user table
+ * @author Rasmus Rossetti
+ * @returns table that displays users
+ */
+const Table = () => {
+  /**
+   * global hook for refreshing table
+   */
+  const { refresh, setRefresh } = useContext(RefreshContext);
+  /**
+   * hooks from our custom hook that fetches data
+   */
+  const { data, loading, error } = useFetch("http://localhost:5000/users");
+  /**
+   * hook retreiving data from input
+   */
+  const [searchInput, setSearchInput] = useState("");
+  /** toggling the modal
+   * @param {boolean}
+   */
+  const [showModal, setShowModal] = React.useState(false);
+
+  if (error) {
+    console.log(error);
+  }
+  /**
+   * deleteUser function delete a user onclick
+   * @param {string} id the id from a certain user to delete
+   */
+  const deleteUser = async (id) => {
+    if (window.confirm("Are you sure you want to delete user?")) {
+      const response = await axios.delete(`http://localhost:5000/user/${id}`);
+      if (response.status === 200) {
+        toast.dark(response.data, {
+          autoClose: 1000,
+        });
+        /**
+         * setting the global boolean variable refresh not equal to trigger refreshing the table
+         */
+        setRefresh(!refresh);
+      }
+    }
+  };
+
+  return (
+    &lt;>
+      &lt;div className='mt-28 w-8/12 m-auto relative overflow-x-auto shadow-md sm:rounded-lg'>
+        &lt;label
+          htmlFor='search'
+          className='ml-3 block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'
+        >
+          Search user by name
+        &lt;/label>
+        &lt;input
+          className='m-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+          type='text'
+          id='name'
+          name='name'
+          placeholder='Enter Name...'
+          onChange={(e) => setSearchInput(e.target.value)}
+          value={searchInput}
+        />
+        &lt;table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
+          &lt;thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+            &lt;tr>
+              &lt;th scope='col' className='px-6 py-3'>
+                Name
+              &lt;/th>
+              &lt;th scope='col' className='px-6 py-3'>
+                Email
+              &lt;/th>
+              &lt;th scope='col' className='px-6 py-3'>
+                Contact
+              &lt;/th>
+              &lt;th scope='col' className='px-6 py-3'>
+                Id
+              &lt;/th>
+              &lt;th scope='col' className='px-6 py-3'>
+                &lt;span className='sr-only'>Edit&lt;/span>
+              &lt;/th>
+              &lt;th scope='col' className='px-6 py-3'>
+                &lt;span className='sr-only'>Delete&lt;/span>
+              &lt;/th>
+            &lt;/tr>
+          &lt;/thead>
+          &lt;tbody>
+            {data &amp;&amp; (
+              &lt;>
+                {loading ? (
+                  &lt;div className='text-2xl'>...loading&lt;/div>
+                ) : (
+                  data
+                    .filter((val) => {
+                      if (searchInput == "") {
+                        return val;
+                      } else if (
+                        val.name
+                          .toLowerCase()
+                          .includes(searchInput.toLowerCase())
+                      ) {
+                        return val;
+                      }
+                    })
+                    .map((item) => (
+                      &lt;tr key={item.id} className='bg-white dark:bg-gray-800'>
+                        &lt;th
+                          scope='row'
+                          className='px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap'
+                        >
+                          {item.name}
+                        &lt;/th>
+                        &lt;td className='px-6 py-4'>{item.email}&lt;/td>
+                        &lt;td className='px-6 py-4'>+{item.contact}&lt;/td>
+                        &lt;td className='px-6 py-4'>{item.id}&lt;/td>
+                        &lt;td className='px-6 py-4 text-right'>
+                          &lt;button
+                            onClick={() => setShowModal(true)}
+                            className='font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                          >
+                            Edit
+                          &lt;/button>
+                          &lt;>
+                            {showModal ? (
+                              &lt;Modal setShowModal={setShowModal} item={item} />
+                            ) : null}
+                          &lt;/>
+                        &lt;/td>
+                        &lt;td className='px-6 py-4 text-right'>
+                          &lt;button
+                            onClick={() => deleteUser(item.id)}
+                            className='font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                          >
+                            Delete
+                          &lt;/button>
+                        &lt;/td>
+                      &lt;/tr>
+                    ))
+                )}
+              &lt;/>
+            )}
+          &lt;/tbody>
+        &lt;/table>
+      &lt;/div>
+    &lt;/>
+  );
+};
+
+export default Table;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#initialState">initialState</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#RefreshContext">RefreshContext</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Apr 27 2022 14:43:36 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
