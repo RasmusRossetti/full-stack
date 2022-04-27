@@ -21,9 +21,9 @@ The UI/UX is built with input forms and presenting user information on a table t
 
 ## Installation
 
-### frontend folder
+## frontend folder
 
-## Available Scripts
+### Available Scripts
 
 In the frontend directory, you can run:
 
@@ -39,9 +39,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### backend folder
+## backend folder
 
-## Available Scripts
+### Available Scripts
 
 In the backend directory, you can run:
 
