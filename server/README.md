@@ -1,4 +1,4 @@
-# Getting Started with backend folder
+# Getting Started with server folder
 
 This project was made to build a fullstack app.
 
