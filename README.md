@@ -2,11 +2,9 @@
 
 ## Technologies used
 backend
-
--Node.js, express, uuid, cors, nodemon
+- Node.js, express, uuid, cors, nodemon
 
 frontend
-
 - create-react-app, tailwind, axios, react-toastify
 
 ## Description
