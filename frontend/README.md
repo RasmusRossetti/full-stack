@@ -1,6 +1,6 @@
-# Getting Started with Frontend app
+# Getting Started with frontend folder
 
-This project was made to build fullstack app.
+This project was made to build a fullstack app.
 
 ## Available Scripts
 
@@ -12,7 +12,7 @@ run the npm install to install all the dependencies
 
 ### `npm start`
 
-Runs the app in the development mode.\
+run the npm start to run the app 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
