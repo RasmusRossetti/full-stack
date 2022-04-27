@@ -13,14 +13,14 @@ This project is a fullstack application with built backend server to handle requ
 The frontend is built with react-app and other dependencies.
 The UI/UX is built with input forms and presenting user information on a table that you can add, update, delete a user.
 
-
-- What was your motivation?
  
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
+- Why did you build this project?
+
    i built this project because i want to get a deeper and fully understanding of the connections between the front end and the backend.
    Also practise the CRUD operation.
    
 - What did you learn?
+
   I learned allot through this project especially the skills in the backend wich was quite new for me.
   I got more experience doing this project more debugging skills and get a full understanding of front and backend.
   Now i also have more experience in the CRUD operations.
