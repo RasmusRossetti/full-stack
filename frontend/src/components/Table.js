@@ -100,7 +100,7 @@ const Table = () => {
                 ) : (
                   data
                     .filter((val) => {
-                      if (searchInput == "") {
+                      if (searchInput === "") {
                         return val;
                       } else if (
                         val.name
@@ -122,16 +122,8 @@ const Table = () => {
                         <td className='px-6 py-4'>+{item.contact}</td>
                         <td className='px-6 py-4'>{item.id}</td>
                         <td className='px-6 py-4 text-right'>
-                          <button
-                            onClick={() => setShowModal(true)}
-                            className='font-medium text-blue-600 dark:text-blue-500 hover:underline'
-                          >
-                            Edit
-                          </button>
                           <>
-                            {showModal ? (
-                              <Modal setShowModal={setShowModal} item={item} />
-                            ) : null}
+                            <Modal item={item} />
                           </>
                         </td>
                         <td className='px-6 py-4 text-right'>

@@ -9,13 +9,13 @@ import { useState } from "react";
  */
 function App() {
   /**
-   *@type {Refresh} the global state is created here for the refresh of the table
+   *@type {refresh} the global state is created here for the refresh of the table
    */
   const [refresh, setRefresh] = useState(false);
   return (
     <div className='pb-5 bg-gray-900 min-h-screen'>
-      /** RefreshContext.Provider is the provider for the refresh state to all
-      the other components */
+      {/* /** RefreshContext.Provider is the provider for the refresh state to all
+      the other components */}
       <RefreshContext.Provider value={{ refresh, setRefresh }}>
         <Form />
         <Table />
