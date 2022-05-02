@@ -122,9 +122,7 @@ const Table = () => {
                         <td className='px-6 py-4'>+{item.contact}</td>
                         <td className='px-6 py-4'>{item.id}</td>
                         <td className='px-6 py-4 text-right'>
-                          <>
-                            <Modal item={item} />
-                          </>
+                          <Modal item={item} />
                         </td>
                         <td className='px-6 py-4 text-right'>
                           <button
