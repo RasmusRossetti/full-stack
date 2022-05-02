@@ -1,10 +1,10 @@
-# Getting Started with backend folder
+# Getting Started with server folder
 
 This project was made to build a fullstack app.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In this server directory, you can run:
 
 ### `npm install`
 
