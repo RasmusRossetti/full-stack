@@ -11,11 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "better-docs": "^2.7.2",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "jsdoc": "^3.6.10",
     "nodemon": "^2.0.15"
   }
 }

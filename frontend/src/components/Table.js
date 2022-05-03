@@ -27,7 +27,6 @@ const Table = () => {
   /** toggling the modal
    * @param {boolean}
    */
-  const [showModal, setShowModal] = React.useState(false);
 
   if (error) {
     console.log(error);
@@ -39,14 +38,16 @@ const Table = () => {
   const deleteUser = async (id) => {
     if (window.confirm("Are you sure you want to delete user?")) {
       const response = await axios.delete(`http://localhost:5000/user/${id}`);
+
       if (response.status === 200) {
+        console.log(response.status);
         toast.dark(response.data, {
           autoClose: 1000,
         });
         /**
          * setting the global boolean variable refresh not equal to trigger refreshing the table
          */
-        setRefresh(!refresh);
+        await setRefresh(!refresh);
       }
     }
   };
