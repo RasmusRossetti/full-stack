@@ -19,7 +19,7 @@ import userRoutes from "./routes/route.js";
  */
 const app = express();
 /**
- * creating port
+ * creating portS
  */
 const port = 5000;
 /**

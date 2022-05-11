@@ -99,10 +99,19 @@ const Table = () => {
                 {loading ? (
                   <div className='text-2xl'>...loading</div>
                 ) : (
+                  /**
+                   * Here we filter out the data state which contains the response
+                   */
                   data
                     .filter((val) => {
+                      /**
+                       * if the search input an empty string then do nothing
+                       */
                       if (searchInput === "") {
                         return val;
+                        /**
+                         * otherwise we want to match the data/val names with the search input wich we transforms to lowecase and then using the include method.
+                         */
                       } else if (
                         val.name
                           .toLowerCase()
@@ -110,6 +119,9 @@ const Table = () => {
                       ) {
                         return val;
                       }
+                      /**
+                       * then looping the users using the map method
+                       */
                     })
                     .map((item) => (
                       <tr key={item.id} className='bg-white dark:bg-gray-800'>
