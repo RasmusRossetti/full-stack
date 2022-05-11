@@ -139,6 +139,9 @@ const Table = () => {
                         </td>
                         <td className='px-6 py-4 text-right'>
                           <button
+                            /**
+                             * the Onclick event with the function deleteUser passing the id of the user in the parameters
+                             */
                             onClick={() => deleteUser(item.id)}
                             className='font-medium text-blue-600 dark:text-blue-500 hover:underline'
                           >
